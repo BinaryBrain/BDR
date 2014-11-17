@@ -1,3 +1,10 @@
+----------------------------------------------------------
+--   Fichier: labo3.sql								
+--   Auteur(s): Baehler Simon et Sacha Bron	
+--   Date: 17.11.14								
+----------------------------------------------------------
+
+
  -- 1) Donner l'ensemble des films (title, release_year) classés (rating) G durant plus de 100 minutes, dont les coûts de remplacements sont 29.99$, en les ordonnant par titre.
 SELECT 	
 	`title`,
@@ -233,8 +240,8 @@ FROM `actor` AS A
 		ON FA.film_id = FC.film_id
 	INNER JOIN category AS C
 		ON FC.category_id = C.category_id
-WHERE `first_name` LIKE 'b%' 
-	OR `last_name` LIKE 'a%' 
+WHERE (`first_name` LIKE 'b%' 
+	OR `last_name` LIKE 'a%') 
 	AND c.name LIKE 'ACTION'
 
 "BETTE","NICHOLSON"
@@ -248,8 +255,26 @@ WHERE `first_name` LIKE 'b%'
 "KIM","ALLEN"
 "ANGELINA","ASTAIRE"
 "BURT","DUKAKIS"
-"BEN","WILLIS"
-"BURT","TEMPLE"
+
+-- 9b)
+
+SELECT DISTINCT
+	actor.first_name,
+	actor.last_name
+FROM 
+	actor,
+	film_actor,
+	film,
+	film_category,
+	category
+WHERE 
+	actor.actor_id = film_actor.actor_id AND
+	film_actor.film_id = film.film_id AND
+    film.film_id = film_category.film_id AND
+	film_category.category_id = category.category_id AND
+ 	(actor.first_name LIKE 'b%' 
+	OR actor.last_name LIKE 'a%' )
+	AND category.name LIKE 'ACTION'
 
 -- 10) Donner le titre des films (titre) et le nombre d'acteurs (nombre_acteurs) des films de musique, en les triant par nombre d'acteur décroissant.
 
@@ -584,3 +609,48 @@ COUNT(*) 0
 UPDATE payment as P
 SET P.amount  = (p.amount + p.amount * 0.5), SET P.payment_date = CURRENT_TIMESTAMP
 WHERE p.amount > 5
+
+
+-- 24 ) 24. Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez
+--louer des films. Spécifier les attributs (colonnes) lors de l’insertion. Indications : plusieurs requêtes sont
+--nécessaires. Pour chaque nouveau tuple, la base de données doit générer l'id. Pourquoi ne pouvez-vous
+-- pas le faire? Nyon n'existe pas, il faut donc la crée
+
+INSERT INTO 
+	city (city, country_id) 
+VALUES ('Nyon', (
+		SELECT 
+			country_id AS C 
+	FROM country 
+	WHERE country='Switzerland'));
+INSERT INTO 
+	address (address,city_id,postal_code,phone,district) 
+VALUES ("Rue du centre",(
+		SELECT city_id FROM city 
+		WHERE city LIKE "Nyon"),
+			1260,"022 360 00 00","")
+
+INSERT INTO 
+	customer (store_id,first_name,last_name,email,address_id,active,create_date) 
+VALUES (1,"Marcel","Rochat","mr@bluewin.ch",(
+		SELECT 
+			max(address_id) 
+		FROM address),1,CURRENT_DATE())
+
+SELECT C.first_name,
+	   C.last_name,
+	   A.address,
+	   A.postal_code,
+       CI.city,
+	   A.phone,
+       CO.country,
+       C.email,
+       C.store_id
+FROM customer AS C
+	INNER JOIN address AS A
+		ON C.address_id = A.address_id
+	INNER JOIN city AS CI
+		ON A.city_id = CI.city_id
+	INNER JOIN country AS CO
+		ON CI.country_id = CO.country_id
+WHERE first_name = "MARCEL" AND last_name = "ROCHAT";
