@@ -111,7 +111,7 @@ ORDER BY F.film_id DESC
 SELECT DISTINCT 	
 	F.film_id ,
 	`title`,
-	`replacement_cost` AS `pirx`
+	`replacement_cost` AS `prix`
 FROM `film` AS F 
 	LEFT JOIN inventory as I 
 		ON F.film_id = I.film_id 
