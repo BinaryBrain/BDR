@@ -963,9 +963,3 @@ Pourquoi ne pouvez-vous pas le faire? Nyon n'existe pas, il faut donc la crée.
 
 Nous pourrions générer l'id des tuples ajoutés, mais il faudrait au préalable faire une requête pour trouver l'id le plus grand de la table.  
 Cette opération est fastidieuse et peut provoquer des conflits si deux clients essayent d'insérer des tuples en même temps.
-
-## Exercice 25
-
-
-
-### Requête
