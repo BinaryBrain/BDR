@@ -672,11 +672,12 @@ ORDER BY pays, nom
 -- 22) Lister le nombre de paiements dont la valeur supérieure est à 11. Effacer ces paiements. Lister à nouveau
 --pour vérifier que l'opération a bien eu lieu. Donner les trois requêtes et les résultats de la première et de
 -- la troisième.
-SELECT COUNT(*)
-	FROM payment p
-	WHERE p.amount > 11;
+SELECT COUNT(p.payment_id)
+FROM payment p
+WHERE p.amount > 11;
 
-DELETE FROM `payment` WHERE > 11
+DELETE FROM payment
+WHERE amount > 11;
 
 -- 23) En une seule requête, modifier les paiements comme suit : Chaque paiement de plus de 5 est majoré de
 --50% et la date de paiement est mise à jour à la date courante du serveur.
