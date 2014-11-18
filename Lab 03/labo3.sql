@@ -740,4 +740,5 @@ WHERE first_name = "MARCEL" AND last_name = "ROCHAT";
 
 -- Nous pourrions générer l'id des tuples ajoutés, mais il faudrait au préalable faire une requête pour trouver l'id le plus grand de la table.
 -- Cette opération est fastidieuse et peut provoquer des conflits si deux clients essayent d'insérer des tuples en même temps.
- 
+
+-- 25) 
