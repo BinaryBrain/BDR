@@ -516,28 +516,60 @@ FROM film f
 "120.07500000"
 
 -- 18) Afficher tous les clients résidant en Inde, au Japon, ou au Maroc, dont la dépense moyenne par film loué
---est supérieure à 3.4. Ordonner par pays puis par nom. Afficher les informations suivantes : id, nom,
---prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la
---table film. Indication : Commencer par établir une requête affichant tous les clients avec leur dépense
---moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la
---dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
+-- est supérieure à 3.4. Ordonner par pays puis par nom. Afficher les informations suivantes : id, nom,
+-- prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la table film.
+-- Indication : Commencer par établir une requête affichant tous les clients avec leur dépense
+-- moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la
+-- dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
 
-SELECT 
-	`customer_id`,
-	`first_name`,
-	`last_name`, 
-	CO.country 
-FROM `customer` AS C
-	INNER JOIN address AS A 
-		ON C.address_id = A.address_id
-	INNER JOIN city AS CI 
-		ON A.city_id = CI.city_id
-	INNER JOIN country AS CO 
-		ON CI.country_id = CO.country_id 
-WHERE Co.country LIKE 'Japan' 
-	OR CO.country LIKE 'INDIA' 
-	OR Co.country LIKE 'Morocco' 
-	ORDER BY CO.country
+SELECT *
+FROM (
+	SELECT 
+		c.customer_id AS id,
+		c.first_name AS prenom,
+		c.last_name AS nom,
+		co.country AS pays,
+		COUNT(i.film_id) AS nombre_films_total,
+		SUM(p.amount) AS total_depense,
+		AVG(p.amount) AS depense_moyenne
+	FROM customer c
+	JOIN address ad ON ad.address_id = c.address_id
+	JOIN city ON city.city_id = ad.city_id 
+	JOIN country co ON co.country_id = city.country_id
+	JOIN payment p ON p.customer_id = c.customer_id
+	JOIN rental r ON r.customer_id = c.customer_id
+	JOIN inventory i ON i.inventory_id = r.inventory_id
+	WHERE co.country = "India"
+		OR co.country = "Morocco"
+		OR co.country = "Japan"
+	GROUP BY c.customer_id
+	) T
+WHERE T.depense_moyenne > 3.4
+ORDER BY T.pays, T.nom
+
+-- total de 93
+
+"170","BEATRICE","ARNOLD","India","676","3113.24","4.605385"
+"60","MILDRED","BAILEY","India","625","2468.75","3.950000"
+"217","AGNES","BISHOP","India","529","2271.71","4.294348"
+"95","PAULA","BRYANT","India","324","1400.76","4.323333"
+"412","ALLEN","BUTTERFIELD","India","441","1801.59","4.085238"
+"419","CHAD","CARBONE","India","625","2243.75","3.590000"
+"468","TIM","CARY","India","1521","6848.79","4.502821"
+"209","TONYA","CHAPMAN","India","1024","5173.76","5.052500"
+"440","BERNARD","COLBY","India","484","1953.16","4.035455"
+"502","BRETT","CORNWELL","India","1156","4714.44","4.078235"
+"379","CARLOS","COUGHLIN","India","529","2455.71","4.642174"
+"446","THEODORE","CULP","India","961","3617.39","3.764194"
+"316","STEVEN","CURLEY","India","841","3848.59","4.576207"
+"300","JOHN","FARNSWORTH","India","961","4268.39","4.441613"
+"509","RAUL","FORTIER","India","400","2016.00","5.040000"
+"186","HOLLY","FOX","India","961","3555.39","3.699677"
+"123","SHANNON","FREEMAN","India","576","2418.24","4.198333"
+"356","GERALD","FULTZ","India","900","3651.00","4.056667"
+"238","NELLIE","GARRETT","India","441","1990.59","4.513810"
+"224","PEARL","GARZA","India","484","1689.16","3.490000"
+"121","JOSEPHINE","GOMEZ","India","676","2853.24","4.220769"
 
 -- 19) Donner la liste des clients japonais et français (id, nom, prenom, pays) qui n'ont pas encore rendu tous les films qu'ils ont empruntés. Ordonner par pays, puis par nom. Utilisez EXISTS, ne pas utiliser de GROUP BY, ni de IN / NOT IN.
 
