@@ -504,6 +504,29 @@ JOIN (
 WHERE f.film_id <= 100
 ORDER BY f.film_id
 
+-- total de 37
+
+"1","ACADEMY DINOSAUR"
+"4","AFFAIR PREJUDICE"
+"5","AFRICAN EGG"
+"6","AGENT TRUMAN"
+"10","ALADDIN CALENDAR"
+"11","ALAMO VIDEOTAPE"
+"12","ALASKA PHANTOM"
+"17","ALONE TRIP"
+"18","ALTER VICTORY"
+"19","AMADEUS HOLY"
+"20","AMELIE HELLFIGHTERS"
+"29","ANTITRUST TOMATOES"
+"31","APACHE DIVINE"
+"32","APOCALYPSE FLAMINGOS"
+"34","ARABIA DOGMA"
+"40","ARMY FLINTSTONES"
+"42","ARTIST COLDBLOODED"
+"44","ATTACKS HATE"
+"45","ATTRACTION NEWTON"
+"47","BABY HALL"
+
 -- La requête la plus rapide sera celle-ci (la n°16). En effet, le DBMS n'aura pas besoin de charger 2 fois la table `actor` et de chercher si chaque actor est présent dans la table `actor` réduite. Toutes ces comparaisons permettent de gagner du temps.
 
 -- 17) Un fou décide de regarder l'ensemble des films qui sont présents dans la base de données. Etablir une requête qui donne le nombre de jours (jours) qu'il devra y consacrer, s'il dispose de 16h par jour.

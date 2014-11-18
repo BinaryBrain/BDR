@@ -1,8 +1,6 @@
 # Base de Données - Labo 3
 
-Simon Baehler et Sacha Bron
-
-17 novembre 2014
+Simon Baehler et Sacha Bron - 17 novembre 2014
 
 ## Exercice 1
 
@@ -635,6 +633,31 @@ JOIN (
 	) a ON a.actor_id = fa.actor_id
 WHERE f.film_id <= 100
 ORDER BY f.film_id
+```
+
+### Résultats (total: 37)
+
+```
+"1","ACADEMY DINOSAUR"
+"4","AFFAIR PREJUDICE"
+"5","AFRICAN EGG"
+"6","AGENT TRUMAN"
+"10","ALADDIN CALENDAR"
+"11","ALAMO VIDEOTAPE"
+"12","ALASKA PHANTOM"
+"17","ALONE TRIP"
+"18","ALTER VICTORY"
+"19","AMADEUS HOLY"
+"20","AMELIE HELLFIGHTERS"
+"29","ANTITRUST TOMATOES"
+"31","APACHE DIVINE"
+"32","APOCALYPSE FLAMINGOS"
+"34","ARABIA DOGMA"
+"40","ARMY FLINTSTONES"
+"42","ARTIST COLDBLOODED"
+"44","ATTACKS HATE"
+"45","ATTRACTION NEWTON"
+"47","BABY HALL"
 ```
 
 ### Question
