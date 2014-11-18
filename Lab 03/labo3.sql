@@ -84,27 +84,27 @@ ORDER BY F.film_id DESC
 
 -- total de 31
 
-933	VAMPIRE WHALE
-928	UPTOWN YOUNG
-921	UNCUT SUICIDES
-857	STRICTLY SCARFACE
-852	STRANGELOVE DESIRE
-757	SAGEBRUSH CLUELESS
-753	RUSH GOODFELLAS
-688	POLISH BROOKLYN
-655	PANTHER REDS
-592	MONSTER SPARTACUS
-571	METAL ARMAGEDDON
-564	MASSAGE IMAGE
-550	MAGUIRE APACHE
-529	LONELY ELEPHANT
-496	KICK SAVANNAH
-491	JUMPING WRATH
-405	HAUNTED ANTITRUST
-379	GREEDY ROOTS
-369	GOODFELLAS SALUTE
-313	FIDELITY DEVIL
-235	DIVIDE MONSTER
+"933", "VAMPIRE WHALE"
+"928", "UPTOWN YOUNG"
+"921", "UNCUT SUICIDES"
+"857", "STRICTLY SCARFACE"
+"852", "STRANGELOVE DESIRE"
+"757", "SAGEBRUSH CLUELESS"
+"753", "RUSH GOODFELLAS"
+"688", "POLISH BROOKLYN"
+"655", "PANTHER REDS"
+"592", "MONSTER SPARTACUS"
+"571", "METAL ARMAGEDDON"
+"564", "MASSAGE IMAGE"
+"550", "MAGUIRE APACHE"
+"529", "LONELY ELEPHANT"
+"496", "KICK SAVANNAH"
+"491", "JUMPING WRATH"
+"405", "HAUNTED ANTITRUST"
+"379", "GREEDY ROOTS"
+"369", "GOODFELLAS SALUTE"
+"313", "FIDELITY DEVIL"
+"235", "DIVIDE MONSTER"
 
 
 -- 5) Donner les films (film_id, title, langue) de science fiction dans lesquels joue au moins un acteur dont leprénom est ALAN ou BEN en les ordonnant par numéro de film décroissant.
@@ -195,7 +195,9 @@ FROM `customer` AS C
 WHERE A.city_id = 321 
 	AND S.store_id = 2
 ORDER BY last_name
-	
+
+-- total de 1
+
 "66","JANICE","WARD"
 
 -- 8) Lister le pays, la ville, le numéro postal (pays, ville, npa) des villes françaises et des villes dont le numéro du pays auquel elles appartiennent est entre 50 et 58 (bornes non comprises). Ne pas utiliser BETWEEN. Ordonner par pays, ville, npa. 
@@ -244,6 +246,8 @@ WHERE (`first_name` LIKE 'b%'
 	OR `last_name` LIKE 'a%') 
 	AND c.name LIKE 'ACTION'
 
+-- total de 11
+
 "BETTE","NICHOLSON"
 "MERYL","ALLEN"
 "BOB","FAWCETT"
@@ -273,8 +277,23 @@ WHERE
     film.film_id = film_category.film_id AND
 	film_category.category_id = category.category_id AND
  	(actor.first_name LIKE 'b%' 
-	OR actor.last_name LIKE 'a%' )
+	OR actor.last_name LIKE 'a%')
 	AND category.name LIKE 'ACTION'
+
+-- total de 11
+
+"BETTE","NICHOLSON"
+"MERYL","ALLEN"
+"BOB","FAWCETT"
+"KIRSTEN","AKROYD"
+"BELA","WALKEN"
+"BEN","HARRIS"
+"CHRISTIAN","AKROYD"
+"BURT","POSEY"
+"KIM","ALLEN"
+"ANGELINA","ASTAIRE"
+"BURT","DUKAKIS"
+
 
 -- 10) Donner le titre des films (titre) et le nombre d'acteurs (nombre_acteurs) des films de musique, en les triant par nombre d'acteur décroissant.
 
@@ -496,14 +515,13 @@ FROM film f
 
 "120.07500000"
 
-
-
 -- 18) Afficher tous les clients résidant en Inde, au Japon, ou au Maroc, dont la dépense moyenne par film loué
 --est supérieure à 3.4. Ordonner par pays puis par nom. Afficher les informations suivantes : id, nom,
 --prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la
 --table film. Indication : Commencer par établir une requête affichant tous les clients avec leur dépense
 --moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la
---dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête. 
+--dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
+
 SELECT 
 	`customer_id`,
 	`first_name`,
@@ -573,7 +591,19 @@ WHERE C.customer_id IN
 			AND R.return_date IS NULL) 
 	AND (Co.country LIKE 'Japan' OR CO.country LIKE 'France')
 
+-- total de 8
+
+"162","LAUREN","HUDSON","France"
+"264","GWENDOLYN","MAY","Japan"
+"163","CATHY","SPENCER","Japan"
+"355","TERRY","GRISSOM","Japan"
+"53","HEATHER","MORRIS","Japan"
+"337","JERRY","JORDON","Japan"
+"11","LISA","ANDERSON","Japan"
+"29","ANGELA","HERNANDEZ","Japan"
+
  --21) Même question. Ne pas utiliser de GROUP BY, de IN / NOT IN, ni de EXISTS / NOT EXISTS. Avant de commencer les requêtes suivantes, sauvegarder la base si nécessaire.
+
 SELECT DISTINCT
 	`customer_id` AS `id`,
 	`first_name` AS `prenom`,
