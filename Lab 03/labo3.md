@@ -302,7 +302,7 @@ ORDER BY `country`, CI.city, A.postal_code
 
 ## Exercice 9
 
-Donner le nom et le prénom des acteurs ayant joué dans un film d'action, dont le prénom commence par b, ou dont le nom de famille commence par a. Donner deux versions de cette requêtes : en écrivant les jointures à l'aide du mot clé JOIN, et sans le mot clé JOIN, en évitant les sous requêtes.
+Donner le nom et le prénom des acteurs ayant joué dans un film d'action, dont le prénom commence par b, ou dont le nom de famille commence par a. Donner deux versions de cette requêtes: en écrivant les jointures à l'aide du mot clé JOIN, et sans le mot clé JOIN, en évitant les sous requêtes.
 
 ### Requête
 
@@ -613,7 +613,7 @@ ORDER BY id
 
 ## Exercice 16
 
-Même question, mais sans utiliser le mot clé IN. Indication : une sous-requête peut être utilisée comme un table, et donc être jointe.
+Même question, mais sans utiliser le mot clé IN. Indication: une sous-requête peut être utilisée comme un table, et donc être jointe.
 
 ### Requête
 
@@ -690,8 +690,8 @@ FROM film f
 ## Exercice 18
 
 Afficher tous les clients résidant en Inde, au Japon, ou au Maroc, dont la dépense moyenne par film loué est supérieure à 3.4. Ordonner par pays puis par nom.  
-Afficher les informations suivantes : id, nom, prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la table film.  
-Indication : Commencer par établir une requête affichant tous les clients avec leur dépense moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
+Afficher les informations suivantes: id, nom, prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la table film.  
+Indication: Commencer par établir une requête affichant tous les clients avec leur dépense moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
 
 ### Requête
 
