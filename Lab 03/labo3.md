@@ -4,10 +4,9 @@ Simon Baehler et Sacha Bron - 17 novembre 2014
 
 ## Exercice 1
 
-Donner l'ensemble des films (title, release_year) classés (rating) G durant plus de 100 minutes, dont les coûts de remplacements sont 29.99$, en les ordonnant par titre.
+Donner l'ensemble des films (`title`, `release_year`) classés (`rating`) G durant plus de 100 minutes, dont les coûts de remplacements sont 29.99$, en les ordonnant par titre.
 
 ### Requête
-
 
 ```
 SELECT
@@ -22,7 +21,6 @@ ORDER BY `title`
 
 ### Résultats (total: 8)
 
-
 ```
 "BALLROOM MOCKINGBIRD","2006"
 "EXTRAORDINARY CONQUERER","2006"
@@ -36,7 +34,7 @@ ORDER BY `title`
 
 ## Exercice 2
 
-Donner le nom et le prénom (first_name, last_name) des clientes nommées TRACY attachées au magasin numéro 1, ordonnées par numéro de client décroissant
+Donner le nom et le prénom (`first_name`, `last_name`) des clientes nommées TRACY attachées au magasin numéro 1, ordonnées par numéro de client décroissant
 
 ### Requête
 
@@ -60,7 +58,7 @@ ORDER by `customer_id` DESC
 
 ## Exercice 3
 
-Donner les films d'action (film_id, title) durant moins de 55 minutes en les ordonnant par film_id croissant.
+Donner les films d'action (`film_id`, `title`) durant moins de 55 minutes en les ordonnant par `film_id` croissant.
 
 ### Requête
 
@@ -91,7 +89,7 @@ ORDER by F.film_id
 
 ## Exercice 4
 
-Donner les films (film_id, title, langue) de science fiction dans lesquels joue au moins un acteur dont leprénom est ALAN ou BEN en les ordonnant par numéro de film décroissant.
+Donner les films (`film_id`, `title`, `langue`) de science fiction dans lesquels joue au moins un acteur dont le prénom est ALAN ou BEN en les ordonnant par numéro de film décroissant.
 
 ### Requête
 
@@ -143,7 +141,7 @@ ORDER BY F.film_id DESC
 
 ## Exercice 5
 
-Donner les films (film_id, title, langue) de science fiction dans lesquels joue au moins un acteur dont leprénom est ALAN ou BEN en les ordonnant par numéro de film décroissant.
+Donner les films (`film_id`, `title`, `langue`) de science fiction dans lesquels joue au moins un acteur dont leprénom est ALAN ou BEN en les ordonnant par numéro de film décroissant.
 
 ### Requête
 
@@ -184,7 +182,7 @@ WHERE `rental_id` IS NULL
 
 ## Exercice 6
 
-Donner le nom et le prénom (first_name, last_name) des clients qui ont loué au moins une fois le même film.
+Donner le nom et le prénom (`first_name`, `last_name`) des clients qui ont loué au moins une fois le même film.
 
 ### Requête
 
@@ -235,7 +233,7 @@ WHERE R1.inventory_id = R.inventory_id
 
 ## Exercice 7
 
-Lister tous les clients actifs (prenom, nom) habitant la ville 321 et attachés au magasin 2. Trier par nom de famille.
+Lister tous les clients actifs (`prenom`, `nom`) habitant la ville 321 et attachés au magasin 2. Trier par nom de famille.
 
 ### Requête
 
@@ -262,7 +260,7 @@ ORDER BY last_name
 
 ## Exercice 8
 
-Lister le pays, la ville, le numéro postal (pays, ville, npa) des villes françaises et des villes dont le numéro du pays auquel elles appartiennent est entre 50 et 58 (bornes non comprises). Ne pas utiliser BETWEEN. Ordonner par pays, ville, npa.
+Lister le pays, la ville, le numéro postal (`pays`, `ville`, `npa`) des villes françaises et des villes dont le numéro du pays auquel elles appartiennent est entre 50 et 58 (bornes non comprises). Ne pas utiliser `BETWEEN`. Ordonner par pays, ville, npa.
 
 ### Requête
 
@@ -302,7 +300,7 @@ ORDER BY `country`, CI.city, A.postal_code
 
 ## Exercice 9
 
-Donner le nom et le prénom des acteurs ayant joué dans un film d'action, dont le prénom commence par b, ou dont le nom de famille commence par a. Donner deux versions de cette requêtes: en écrivant les jointures à l'aide du mot clé JOIN, et sans le mot clé JOIN, en évitant les sous requêtes.
+Donner le nom et le prénom des acteurs ayant joué dans un film d'action, dont le prénom commence par b, ou dont le nom de famille commence par a. Donner deux versions de cette requêtes: en écrivant les jointures à l'aide du mot clé `JOIN`...
 
 ### Requête
 
@@ -339,6 +337,8 @@ WHERE (`first_name` LIKE 'b%'
 ```
 
 ## Exercice 9b
+
+...et sans le mot clé `JOIN`, en évitant les sous requêtes.
 
 ### Requête
 
@@ -380,7 +380,7 @@ WHERE
 
 ## Exercice 10
 
-Donner le titre des films (titre) et le nombre d'acteurs (nombre_acteurs) des films de musique, en les triant par nombre d'acteur décroissant.
+Donner le titre des films (`titre`) et le nombre d'acteurs (`nombre_acteurs`) des films de musique, en les triant par nombre d'acteur décroissant.
 
 ### Requête
 
@@ -465,7 +465,7 @@ ORDER BY nombre_acteurs DESC
 
 ## Exercice 12
 
-Lister les catégories (id, nom, nombre de films associés) de films associées à plus de 60 films, sans utiliser de sous requête. Ordonner les résultats par nom de catégorie.
+Lister les catégories (`id`, `nom`, `nombre de films associés`) de films associées à plus de 60 films, sans utiliser de sous requête. Ordonner les résultats par nom de catégorie.
 
 ### Requête
 
@@ -500,7 +500,7 @@ ORDER BY c.name
 
 ## Exercice 13
 
-Afficher le film (ou les films si plusieurs films ont la même durée minimum) le plus court (id_min, titre_min, duree_min).
+Afficher le film (ou les films si plusieurs films ont la même durée minimum) le plus court (`id_min`, `titre_min`, `duree_min`).
 
 ### Requête
 
@@ -529,7 +529,7 @@ WHERE f.length = (
 
 ## Exercice 14
 
-Lister les acteurs (actor_id, nombre_films) qui ont joué dans plus de 35 films, sans utiliser de sous-requêtes.
+Lister les acteurs (`actor_id`, `nombre_films`) qui ont joué dans plus de 35 films, sans utiliser de sous-requêtes.
 
 ### Requête
 
@@ -562,8 +562,8 @@ HAVING nombre_films >= 35
 
 ## Exercice 15
 
-Lister les films (id, titre) dont l’identifiant est inférieur à 100, ordonnés par id dans lesquels joue au moins un acteur qui a joué dans plus de 35 films.  
-Utiliser le mot clé IN.
+Lister les films (`id`, `titre`) dont l’identifiant est inférieur à 100, ordonnés par id dans lesquels joue au moins un acteur qui a joué dans plus de 35 films.  
+Utiliser le mot clé `IN`.
 
 ### Requête
 
@@ -613,7 +613,7 @@ ORDER BY id
 
 ## Exercice 16
 
-Même question, mais sans utiliser le mot clé IN. Indication: une sous-requête peut être utilisée comme un table, et donc être jointe.
+Même question, mais sans utiliser le mot clé `IN`. Indication: une sous-requête peut être utilisée comme un table, et donc être jointe.
 
 ### Requête
 
@@ -670,7 +670,7 @@ La requête la plus rapide sera celle-ci (la n°16). En effet, le DBMS n'aura pa
 
 ## Exercice 17
 
-Un fou décide de regarder l'ensemble des films qui sont présents dans la base de données. Etablir une requête qui donne le nombre de jours (jours) qu'il devra y consacrer, s'il dispose de 16h par jour.
+Un fou décide de regarder l'ensemble des films qui sont présents dans la base de données. Etablir une requête qui donne le nombre de jours (`jours`) qu'il devra y consacrer, s'il dispose de 16h par jour.
 
 ### Requête
 
@@ -690,7 +690,7 @@ FROM film f
 ## Exercice 18
 
 Afficher tous les clients résidant en Inde, au Japon, ou au Maroc, dont la dépense moyenne par film loué est supérieure à 3.4. Ordonner par pays puis par nom.  
-Afficher les informations suivantes: id, nom, prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la table film.  
+Afficher les informations suivantes: `id`, `nom`, `prenom`, `pays`, `nombre_films_total`, `total_depense`, `depense_moyenne`. Le coût de location est dans la table film.  
 Indication: Commencer par établir une requête affichant tous les clients avec leur dépense moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
 
 ### Requête
@@ -750,8 +750,8 @@ ORDER BY T.pays, T.nom
 
 ## Exercice 19
 
-Donner la liste des clients japonais et français (id, nom, prenom, pays) qui n'ont pas encore rendu tous les films qu'ils ont empruntés.  
-Ordonner par pays, puis par nom. Utilisez EXISTS, ne pas utiliser de GROUP BY, ni de IN / NOT IN.
+Donner la liste des clients japonais et français (`id`, `nom`, `prenom`, `pays`) qui n'ont pas encore rendu tous les films qu'ils ont empruntés.  
+Ordonner par pays, puis par nom. Utilisez `EXISTS`, ne pas utiliser de `GROUP BY`, ni de `IN` / `NOT IN`.
 
 ### Requête
 
@@ -792,7 +792,7 @@ ORDER BY pays, nom
 
 ## Exercice 20
 
-Même question. Utiliser IN, ne pas utiliser de GROUP BY, ni de EXISTS / NOT EXISTS.
+Même question. Utiliser `IN`, ne pas utiliser de `GROUP BY`, ni de `EXISTS` / `NOT EXISTS`.
 
 ### Requête
 
@@ -833,7 +833,7 @@ ORDER BY pays, nom
 
 ## Exercice 21
 
-Même question. Ne pas utiliser de GROUP BY, de IN / NOT IN, ni de EXISTS / NOT EXISTS.
+Même question. Ne pas utiliser de `GROUP BY`, de `IN` / `NOT IN`, ni de `EXISTS` / `NOT EXISTS`.
 
 ### Requête
 
