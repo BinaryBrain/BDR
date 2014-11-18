@@ -679,14 +679,18 @@ WHERE p.amount > 11;
 DELETE FROM payment
 WHERE amount > 11;
 
+SELECT COUNT(p.payment_id)
+FROM payment p
+WHERE p.amount > 11;
+
 -- 23) En une seule requête, modifier les paiements comme suit : Chaque paiement de plus de 5 est majoré de
 --50% et la date de paiement est mise à jour à la date courante du serveur.
-UPDATE payment as P
-SET P.amount  = (p.amount + p.amount * 0.5), SET P.payment_date = CURRENT_TIMESTAMP
-WHERE p.amount > 5
 
+UPDATE payment
+SET amount = (amount + amount * 0.5), payment_date = CURRENT_TIMESTAMP
+WHERE amount > 5
 
--- 24 ) 24. Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez
+-- 24) 24. Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez
 --louer des films. Spécifier les attributs (colonnes) lors de l’insertion. Indications : plusieurs requêtes sont
 --nécessaires. Pour chaque nouveau tuple, la base de données doit générer l'id. Pourquoi ne pouvez-vous
 -- pas le faire? Nyon n'existe pas, il faut donc la crée
