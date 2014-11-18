@@ -442,7 +442,8 @@ HAVING nombre_films >= 35
 "198","40"
 
 
--- 15) Lister les films (id, titre) dont l’identifiant est inférieur à 100, ordonnés par id dans lesquels joue au moins un acteur qui a joué dans plus de 35 films. Utiliser le mot clé IN.
+-- 15) Lister les films (id, titre) dont l’identifiant est inférieur à 100, ordonnés par id dans lesquels joue au moins un acteur qui a joué dans plus de 35 films.
+-- Utiliser le mot clé IN.
 
 SELECT
 	f.film_id AS id,
@@ -459,7 +460,7 @@ WHERE f.film_id <= 100
 		GROUP BY a.actor_id
 		HAVING COUNT(fa.film_id) >= 35
 	)
-ORDER BY f.
+ORDER BY id
 
 -- total de 37
 
@@ -571,7 +572,8 @@ ORDER BY T.pays, T.nom
 "224","PEARL","GARZA","India","484","1689.16","3.490000"
 "121","JOSEPHINE","GOMEZ","India","676","2853.24","4.220769"
 
--- 19) Donner la liste des clients japonais et français (id, nom, prenom, pays) qui n'ont pas encore rendu tous les films qu'ils ont empruntés. Ordonner par pays, puis par nom. Utilisez EXISTS, ne pas utiliser de GROUP BY, ni de IN / NOT IN.
+-- 19) Donner la liste des clients japonais et français (id, nom, prenom, pays) qui n'ont pas encore rendu tous les films qu'ils ont empruntés.
+-- Ordonner par pays, puis par nom. Utilisez EXISTS, ne pas utiliser de GROUP BY, ni de IN / NOT IN.
 
 SELECT 
 	`customer_id` AS `id`,
@@ -591,25 +593,26 @@ WHERE EXISTS
 	WHERE R.customer_id = C.customer_id 
 		AND R.return_date IS NULL) 
 	AND (Co.country LIKE 'Japan' OR CO.country LIKE 'France')
+ORDER BY pays, nom
 	
 -- total de 8
 
 "162","LAUREN","HUDSON","France"
-"264","GWENDOLYN","MAY","Japan"
-"163","CATHY","SPENCER","Japan"
-"355","TERRY","GRISSOM","Japan"
-"53","HEATHER","MORRIS","Japan"
-"337","JERRY","JORDON","Japan"
 "11","LISA","ANDERSON","Japan"
+"355","TERRY","GRISSOM","Japan"
 "29","ANGELA","HERNANDEZ","Japan"
+"337","JERRY","JORDON","Japan"
+"264","GWENDOLYN","MAY","Japan"
+"53","HEATHER","MORRIS","Japan"
+"163","CATHY","SPENCER","Japan"
 
 -- 20) Même question. Utiliser IN, ne pas utiliser de GROUP BY, ni de EXISTS / NOT EXISTS.
 SELECT 
-	`customer_id` AS `id`,
-	`first_name` AS `prenom`,
-	`last_name` AS `nom`, 
-	CO.country  AS `pays`
-FROM `customer` AS C
+	customer_id AS id,
+	first_name AS prenom,
+	last_name AS nom, 
+	CO.country AS pays
+FROM customer AS C
 	INNER JOIN address AS A 
 		ON C.address_id = A.address_id
 	INNER JOIN city AS CI
@@ -622,49 +625,58 @@ WHERE C.customer_id IN
 		WHERE R.customer_id = C.customer_id 
 			AND R.return_date IS NULL) 
 	AND (Co.country LIKE 'Japan' OR CO.country LIKE 'France')
+ORDER BY pays, nom
 
 -- total de 8
 
 "162","LAUREN","HUDSON","France"
-"264","GWENDOLYN","MAY","Japan"
-"163","CATHY","SPENCER","Japan"
-"355","TERRY","GRISSOM","Japan"
-"53","HEATHER","MORRIS","Japan"
-"337","JERRY","JORDON","Japan"
 "11","LISA","ANDERSON","Japan"
+"355","TERRY","GRISSOM","Japan"
 "29","ANGELA","HERNANDEZ","Japan"
+"337","JERRY","JORDON","Japan"
+"264","GWENDOLYN","MAY","Japan"
+"53","HEATHER","MORRIS","Japan"
+"163","CATHY","SPENCER","Japan"
 
- --21) Même question. Ne pas utiliser de GROUP BY, de IN / NOT IN, ni de EXISTS / NOT EXISTS. Avant de commencer les requêtes suivantes, sauvegarder la base si nécessaire.
+ --21) Même question. Ne pas utiliser de GROUP BY, de IN / NOT IN, ni de EXISTS / NOT EXISTS.
 
 SELECT DISTINCT
-	`customer_id` AS `id`,
-	`first_name` AS `prenom`,
-	`last_name` AS `nom`, 
-	CO.country  AS `pays`
-FROM `customer` AS C
-	INNER JOIN address AS A 
-		ON C.address_id = A.address_id
-	INNER JOIN city AS CI
-		ON A.city_id = CI.city_id
-	INNER JOIN country AS CO 
-		ON CI.country_id = CO.country_id 
+	c.customer_id AS id,
+	first_name AS prenom,
+	last_name AS nom, 
+	co.country  AS pays
+FROM customer AS c
+	INNER JOIN address AS a 
+		ON c.address_id = a.address_id
+	INNER JOIN city
+		ON a.city_id = city.city_id
+	INNER JOIN country AS co 
+		ON city.country_id = co.country_id 
     LEFT JOIN rental AS R 
-    	ON R.customer_id = C.customer_id
-        WHERE R.return_date IS NULL AND (CO.country LIKE 'Japan' OR CO.country LIKE 'France')
-ORDER BY `C`.`customer_id` ASC
+    	ON r.customer_id = c.customer_id
+        WHERE r.return_date IS NULL AND (co.country LIKE 'Japan' OR co.country LIKE 'France')
+ORDER BY pays, nom
+
+-- total de 8
+
+"162","LAUREN","HUDSON","France"
+"11","LISA","ANDERSON","Japan"
+"355","TERRY","GRISSOM","Japan"
+"29","ANGELA","HERNANDEZ","Japan"
+"337","JERRY","JORDON","Japan"
+"264","GWENDOLYN","MAY","Japan"
+"53","HEATHER","MORRIS","Japan"
+"163","CATHY","SPENCER","Japan"
+
 
 -- 22) Lister le nombre de paiements dont la valeur supérieure est à 11. Effacer ces paiements. Lister à nouveau
 --pour vérifier que l'opération a bien eu lieu. Donner les trois requêtes et les résultats de la première et de
 -- la troisième.
- SELECT COUNT(*) 
-		FROM `payment`
-		WHERE `amount` > 11
-
-COUNT(*) 10
+SELECT COUNT(*)
+	FROM payment p
+	WHERE p.amount > 11;
 
 DELETE FROM `payment` WHERE > 11
-
-COUNT(*) 0
 
 -- 23) En une seule requête, modifier les paiements comme suit : Chaque paiement de plus de 5 est majoré de
 --50% et la date de paiement est mise à jour à la date courante du serveur.
