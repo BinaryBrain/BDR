@@ -22,7 +22,7 @@ ORDER BY `title`
 ### Résultats (total: 8)
 
 title | release_year
------------------------|---------
+------|---------
 BALLROOM MOCKINGBIRD | 2006
 EXTRAORDINARY CONQUERER | 2006
 FANTASIA PARK | 2006
@@ -51,11 +51,10 @@ ORDER by `customer_id` DESC
 ```
 
 ### Résultats (total: 2)
-
-```
-"589","TRACY","HERRMANN"
-"108","TRACY","COLE"
-```
+customer_id | first_name | last_name
+----|-------|--
+589 | TRACY | HERRMANN
+108 | TRACY | COLE
 
 ## Exercice 3
 
@@ -79,14 +78,15 @@ ORDER by F.film_id
 
 ### Résultats (total: 6)
 
-```
-"111", "CADDYSHACK JEDI"
-"292", "EXCITEMENT EVE"
-"542", "LUST LOCK"
-"697", "PRIMARY GLASS"
-"794", "SIDE ARK"
-"869", "SUSPECTS QUILLS"
-```
+F.film_id | title
+----|----------------
+111 | CADDYSHACK JEDI
+292 | EXCITEMENT EVE
+542 | LUST LOCK
+697 | PRIMARY GLASS
+794 | SIDE ARK
+869 | SUSPECTS QUILLS
+
 
 ## Exercice 4
 
@@ -116,29 +116,30 @@ ORDER BY F.film_id DESC
 
 ### Résultats (total: 31)
 
-```
-"933", "VAMPIRE WHALE"
-"928", "UPTOWN YOUNG"
-"921", "UNCUT SUICIDES"
-"857", "STRICTLY SCARFACE"
-"852", "STRANGELOVE DESIRE"
-"757", "SAGEBRUSH CLUELESS"
-"753", "RUSH GOODFELLAS"
-"688", "POLISH BROOKLYN"
-"655", "PANTHER REDS"
-"592", "MONSTER SPARTACUS"
-"571", "METAL ARMAGEDDON"
-"564", "MASSAGE IMAGE"
-"550", "MAGUIRE APACHE"
-"529", "LONELY ELEPHANT"
-"496", "KICK SAVANNAH"
-"491", "JUMPING WRATH"
-"405", "HAUNTED ANTITRUST"
-"379", "GREEDY ROOTS"
-"369", "GOODFELLAS SALUTE"
-"313", "FIDELITY DEVIL"
-"235", "DIVIDE MONSTER"
-```
+F.film_id | title
+----|----------------
+933 | VAMPIRE WHALE
+928 | UPTOWN YOUNG
+921 | UNCUT SUICIDES
+857 | STRICTLY SCARFACE
+852 | STRANGELOVE DESIRE
+757 | SAGEBRUSH CLUELESS
+753 | RUSH GOODFELLAS
+688 | POLISH BROOKLYN
+655 | PANTHER REDS
+592 | MONSTER SPARTACUS
+571 | METAL ARMAGEDDON
+564 | MASSAGE IMAGE
+550 | MAGUIRE APACHE
+529 | LONELY ELEPHANT
+496 | KICK SAVANNAH
+491 | JUMPING WRATH
+405 | HAUNTED ANTITRUST
+379 | GREEDY ROOTS
+369 | GOODFELLAS SALUTE
+313 | FIDELITY DEVIL
+235 | DIVIDE MONSTER
+
 
 ## Exercice 5
 
@@ -162,24 +163,24 @@ WHERE `rental_id` IS NULL
 
 ### Résultats (total: 16)
 
-```
-"1","ACADEMY DINOSAUR","20.99"
-"14","ALICE FANTASIA","23.99"
-"36","ARGONAUTS TOWN","12.99"
-"38","ARK RIDGEMONT","25.99"
-"41","ARSENIC INDEPENDENCE","17.99"
-"87","BOONDOCK BALLROOM","14.99"
-"108","BUTCH PANTHER","19.99"
-"128","CATCH AMISTAD","10.99"
-"221","DELIVERANCE MULHOLLAND","9.99"
-"318","FIREHOUSE VIETNAM","14.99"
-"332","FRANKENSTEIN STRANGER","16.99"
-"404","HATE HANDICAP","26.99"
-"497","KILL BROTHERHOOD","15.99"
-"712","RAIDERS ANTITRUST","11.99"
-"742","ROOF CHAMPION","25.99"
-"909","TREASURE COMMAND","28.99"
-```
+F.film_id | title | prix
+--|-----------------|---------
+1 |ACADEMY DINOSAUR | 20.99
+14 |ALICE FANTASIA | 23.99
+36 |ARGONAUTS TOWN | 12.99
+38 |ARK RIDGEMONT | 25.99
+41 |ARSENIC INDEPENDENCE | 17.99
+87 |BOONDOCK BALLROOM | 14.99
+108 |BUTCH PANTHER | 19.99
+128 |CATCH AMISTAD | 10.99
+221 |DELIVERANCE MULHOLLAND | 9.99
+318 |FIREHOUSE VIETNAM | 14.99
+332 |FRANKENSTEIN STRANGER | 16.99
+404 |HATE HANDICAP | 26.99
+497 |KILL BROTHERHOOD | 15.99
+712 |RAIDERS ANTITRUST | 11.99
+742 |ROOF CHAMPION | 25.99
+909 |TREASURE COMMAND | 28.99
 
 ## Exercice 6
 
@@ -209,28 +210,28 @@ WHERE R1.inventory_id = R.inventory_id
 
 ### Résultats (total: 21510)
 
-```
-"JOEL","FRANCISCO","GABRIEL","HARDER"
-"DIANNE","SHELTON","JOEL","FRANCISCO"
-"DIANNE","SHELTON","GABRIEL","HARDER"
-"NORMAN","CURRIER","VIRGIL","WOFFORD"
-"BEATRICE","ARNOLD","NORMAN","CURRIER"
-"BEATRICE","ARNOLD","VIRGIL","WOFFORD"
-"BEATRICE","ARNOLD","WILLIE","MARKHAM"
-"GERALDINE","PERKINS","NORMAN","CURRIER"
-"GERALDINE","PERKINS","BEATRICE","ARNOLD"
-"GERALDINE","PERKINS","VIRGIL","WOFFORD"
-"GERALDINE","PERKINS","WILLIE","MARKHAM"
-"WILLIE","MARKHAM","NORMAN","CURRIER"
-"WILLIE","MARKHAM","VIRGIL","WOFFORD"
-"DEBRA","NELSON","DARREN","WINDHAM"
-"ROBERT","BAUGHMAN","HENRY","BILLINGSLEY"
-"SERGIO","STANFIELD","FREDDIE","DUGGAN"
-"MARIE","TURNER","SERGIO","STANFIELD"
-"MARIE","TURNER","FREDDIE","DUGGAN"
-"MARIE","TURNER","MATTIE","HOFFMAN"
-"MARIE","TURNER","DWAYNE","OLVERA"
-```
+C.first_name | C.last_name  | C1.first_name | C1.last_name
+-----|-----------|---------|---------
+JOEL | FRANCISCO | GABRIEL | HARDER
+DIANNE | SHELTON | JOEL | FRANCISCO
+DIANNE | SHELTON | GABRIEL | HARDER
+NORMAN | CURRIER | VIRGIL | WOFFORD
+BEATRICE | ARNOLD | NORMAN | CURRIER
+BEATRICE | ARNOLD | VIRGIL | WOFFORD
+BEATRICE | ARNOLD | WILLIE | MARKHAM
+GERALDINE | PERKINS | NORMAN | CURRIER
+GERALDINE | PERKINS | BEATRICE | ARNOLD
+GERALDINE | PERKINS | VIRGIL | WOFFORD
+GERALDINE | PERKINS | WILLIE | MARKHAM
+WILLIE | MARKHAM | NORMAN | CURRIER
+WILLIE | MARKHAM | VIRGIL | WOFFORD
+DEBRA | NELSON | DARREN | WINDHAM
+ROBERT | BAUGHMAN | HENRY | BILLINGSLEY
+SERGIO | STANFIELD | FREDDIE | DUGGAN
+MARIE | TURNER | SERGIO | STANFIELD
+MARIE | TURNER | FREDDIE | DUGGAN
+MARIE | TURNER | MATTIE | HOFFMAN
+MARIE | TURNER | DWAYNE | OLVERA
 
 ## Exercice 7
 
@@ -255,9 +256,9 @@ ORDER BY last_name
 
 ### Résultats (total: 1)
 
-```
-"66","JANICE","WARD"
-```
+customer_id | prenom | nom
+---|--------|------
+66 | JANICE | WARD
 
 ## Exercice 8
 
@@ -282,22 +283,21 @@ ORDER BY `country`, CI.city, A.postal_code
 ```
 
 ### Résultats (total: 13)
-
-```
-"Brunei","Bandar Seri Begawan","52163"
-"Cameroon","Bamenda","37636"
-"France","Brest","61507"
-"France","Le Mans","22853"
-"France","Toulon","80720"
-"France","Toulouse","34021"
-"Gambia","Banjul","53446"
-"India","Balurghat","89959"
-"Israel","Bat Yam","62472"
-"Switzerland","Basel","83980"
-"Turkey","Balikesir","33050"
-"Turkey","Batman","47753"
-"Venezuela","Barcelona","15992"
-```
+pays | ville | NPA
+-------|-------------------|---------
+Brunei |  Bandar Seri Begawan | 52163
+Cameroon |  Bamenda | 37636
+France |  Brest | 61507
+France |  Le Mans | 22853
+France |  Toulon | 80720
+France |  Toulouse | 34021
+Gambia |  Banjul | 53446
+India |  Balurghat | 89959
+Israel |  Bat Yam | 62472
+Switzerland |  Basel | 83980
+Turkey |  Balikesir | 33050
+Turkey |  Batman | 47753
+Venezuela |  Barcelona | 15992
 
 ## Exercice 9
 
@@ -323,19 +323,19 @@ WHERE (`first_name` LIKE 'b%'
 
 ### Résultats (total: 11)
 
-```
-"BETTE","NICHOLSON"
-"MERYL","ALLEN"
-"BOB","FAWCETT"
-"KIRSTEN","AKROYD"
-"BELA","WALKEN"
-"BEN","HARRIS"
-"CHRISTIAN","AKROYD"
-"BURT","POSEY"
-"KIM","ALLEN"
-"ANGELINA","ASTAIRE"
-"BURT","DUKAKIS"
-```
+A.first_name | A.last_name
+------|-------------------
+BETTE | NICHOLSON
+MERYL | ALLEN
+BOB | FAWCETT
+KIRSTEN | AKROYD
+BELA | WALKEN
+BEN | HARRIS
+CHRISTIAN | AKROYD
+BURT | POSEY
+KIM | ALLEN
+ANGELINA | ASTAIRE
+BURT | DUKAKIS
 
 ## Exercice 9b
 
@@ -365,19 +365,20 @@ WHERE
 
 ### Résultats (total: 11)
 
-```
-"BETTE","NICHOLSON"
-"MERYL","ALLEN"
-"BOB","FAWCETT"
-"KIRSTEN","AKROYD"
-"BELA","WALKEN"
-"BEN","HARRIS"
-"CHRISTIAN","AKROYD"
-"BURT","POSEY"
-"KIM","ALLEN"
-"ANGELINA","ASTAIRE"
-"BURT","DUKAKIS"
-```
+A.first_name | A.last_name
+------|-------------------
+BETTE | NICHOLSON
+MERYL | ALLEN
+BOB | FAWCETT
+KIRSTEN | AKROYD
+BELA | WALKEN
+BEN | HARRIS
+CHRISTIAN | AKROYD
+BURT | POSEY
+KIM | ALLEN
+ANGELINA | ASTAIRE
+BURT | DUKAKIS
+
 
 ## Exercice 10
 
@@ -401,28 +402,28 @@ ORDER BY nombre_acteurs DESC
 
 ### Résultats (total: 997)
 
-```
-"ACADEMY DINOSAUR","10"
-"ACE GOLDFINGER","4"
-"ADAPTATION HOLES","5"
-"AFFAIR PREJUDICE","5"
-"AFRICAN EGG","5"
-"AGENT TRUMAN","7"
-"AIRPLANE SIERRA","5"
-"AIRPORT POLLOCK","4"
-"ALABAMA DEVIL","9"
-"ALADDIN CALENDAR","8"
-"ALAMO VIDEOTAPE","4"
-"ALASKA PHANTOM","7"
-"ALI FOREVER","5"
-"ALICE FANTASIA","4"
-"ALIEN CENTER","6"
-"ALLEY EVOLUTION","5"
-"ALONE TRIP","8"
-"ALTER VICTORY","4"
-"AMADEUS HOLY","6"
-"AMELIE HELLFIGHTERS","6"
-```
+titre | nombre_acteurs
+------|------------------
+ACADEMY DINOSAUR | 10
+ACE GOLDFINGER | 4
+ADAPTATION HOLES | 5
+AFFAIR PREJUDICE | 5
+AFRICAN EGG | 5
+AGENT TRUMAN | 7
+AIRPLANE SIERRA | 5
+AIRPORT POLLOCK | 4
+ALABAMA DEVIL | 9
+ALADDIN CALENDAR | 8
+ALAMO VIDEOTAPE | 4
+ALASKA PHANTOM | 7
+ALI FOREVER | 5
+ALICE FANTASIA | 4
+ALIEN CENTER | 6
+ALLEY EVOLUTION | 5
+ALONE TRIP | 8
+ALTER VICTORY | 4
+AMADEUS HOLY | 6
+AMELIE HELLFIGHTERS | 6
 
 ## Exercice 11
 
@@ -447,22 +448,23 @@ ORDER BY nombre_acteurs DESC
 
 ### Résultats (total: 14)
 
-```
-"LUCKY FLYING","10"
-"OLEANDER CLUE","10"
-"INSIDER ARIZONA","9"
-"WIZARD COLDBLOODED","9"
-"PERSONAL LADYBUGS","9"
-"RUNNER MADIGAN","8"
-"ALONE TRIP","8"
-"HANOVER GALAXY","7"
-"ALASKA PHANTOM","7"
-"TELEGRAPH VOYAGE","7"
-"UNCUT SUICIDES","7"
-"CHAMBER ITALIAN","7"
-"MONSTER SPARTACUS","7"
-"DRIVING POLISH","7"
-```
+titre | nombre_acteurs
+-------------|--------
+LUCKY FLYING | 10
+OLEANDER CLUE | 10
+INSIDER ARIZONA | 9
+WIZARD COLDBLOODED | 9
+PERSONAL LADYBUGS | 9
+RUNNER MADIGAN | 8
+ALONE TRIP | 8
+HANOVER GALAXY | 7
+ALASKA PHANTOM | 7
+TELEGRAPH VOYAGE | 7
+UNCUT SUICIDES | 7
+CHAMBER ITALIAN | 7
+MONSTER SPARTACUS | 7
+DRIVING POLISH | 7
+
 
 ## Exercice 12
 
@@ -485,19 +487,19 @@ ORDER BY c.name
 
 ### Résultats (total: 11)
 
-```
-"1","Action","64"
-"2","Animation","66"
-"3","Children","60"
-"6","Documentary","68"
-"7","Drama","62"
-"8","Family","69"
-"9","Foreign","73"
-"10","Games","61"
-"13","New","63"
-"14","Sci-Fi","61"
-"15","Sports","74"
-```
+id | nom | nombre_films
+---|-------|--------
+1 | Action | 64
+2 | Animation | 66
+3 | Children | 60
+6 | Documentary | 68
+7 | Drama | 62
+8 | Family | 69
+9 | Foreign | 73
+10 | Games | 61
+13 | New | 63
+14 | Sci-Fi | 61
+15 | Sports | 74
 
 ## Exercice 13
 
@@ -520,13 +522,13 @@ WHERE f.length = (
 
 ### Résultats (total: 5)
 
-```
-"15","ALIEN CENTER","46"
-"469","IRON MOON","46"
-"504","KWAI HOMEWARD","46"
-"505","LABYRINTH LEAGUE","46"
-"730","RIDGEMONT SUBMARINE","46"
-```
+id_min | titre_min | duree_min
+---|--------|------
+15 | ALIEN CENTER | 46
+469 | IRON MOON | 46
+504 | KWAI HOMEWARD | 46
+505 | LABYRINTH LEAGUE | 46
+730 | RIDGEMONT SUBMARINE | 46
 
 ## Exercice 14
 
@@ -546,20 +548,20 @@ HAVING nombre_films >= 35
 
 ### Résultats (total: 12)
 
-```
-"13","35"
-"23","37"
-"37","35"
-"60","35"
-"81","36"
-"102","41"
-"106","35"
-"107","42"
-"144","35"
-"158","35"
-"181","39"
-"198","40"
-```
+actor_id | nombre_films
+---------|---------------
+13 | 35
+23 | 37
+37 | 35
+60 | 35
+81 | 36
+102 | 41
+106 | 35
+107 | 42
+144 | 35
+158 | 35
+181 | 39
+198 | 40
 
 ## Exercice 15
 
@@ -589,28 +591,28 @@ ORDER BY id
 
 ### Résultats (total: 37)
 
-```
-"1","ACADEMY DINOSAUR"
-"4","AFFAIR PREJUDICE"
-"5","AFRICAN EGG"
-"6","AGENT TRUMAN"
-"10","ALADDIN CALENDAR"
-"11","ALAMO VIDEOTAPE"
-"12","ALASKA PHANTOM"
-"17","ALONE TRIP"
-"18","ALTER VICTORY"
-"19","AMADEUS HOLY"
-"20","AMELIE HELLFIGHTERS"
-"29","ANTITRUST TOMATOES"
-"31","APACHE DIVINE"
-"32","APOCALYPSE FLAMINGOS"
-"34","ARABIA DOGMA"
-"40","ARMY FLINTSTONES"
-"42","ARTIST COLDBLOODED"
-"44","ATTACKS HATE"
-"45","ATTRACTION NEWTON"
-"47","BABY HALL"
-```
+id | titre
+--|-------------------
+1 | ACADEMY DINOSAUR
+4 | AFFAIR PREJUDICE
+5 | AFRICAN EGG
+6 | AGENT TRUMAN
+10 | ALADDIN CALENDAR
+11 | ALAMO VIDEOTAPE
+12 | ALASKA PHANTOM
+17 | ALONE TRIP
+18 | ALTER VICTORY
+19 | AMADEUS HOLY
+20 | AMELIE HELLFIGHTERS
+29 | ANTITRUST TOMATOES
+31 | APACHE DIVINE
+32 | APOCALYPSE FLAMINGOS
+34 | ARABIA DOGMA
+40 | ARMY FLINTSTONES
+42 | ARTIST COLDBLOODED
+44 | ATTACKS HATE
+45 | ATTRACTION NEWTON
+47 | BABY HALL
 
 ## Exercice 16
 
@@ -638,28 +640,28 @@ ORDER BY f.film_id
 
 ### Résultats (total: 37)
 
-```
-"1","ACADEMY DINOSAUR"
-"4","AFFAIR PREJUDICE"
-"5","AFRICAN EGG"
-"6","AGENT TRUMAN"
-"10","ALADDIN CALENDAR"
-"11","ALAMO VIDEOTAPE"
-"12","ALASKA PHANTOM"
-"17","ALONE TRIP"
-"18","ALTER VICTORY"
-"19","AMADEUS HOLY"
-"20","AMELIE HELLFIGHTERS"
-"29","ANTITRUST TOMATOES"
-"31","APACHE DIVINE"
-"32","APOCALYPSE FLAMINGOS"
-"34","ARABIA DOGMA"
-"40","ARMY FLINTSTONES"
-"42","ARTIST COLDBLOODED"
-"44","ATTACKS HATE"
-"45","ATTRACTION NEWTON"
-"47","BABY HALL"
-```
+id | titre
+---|--------------
+1 | ACADEMY DINOSAUR
+4 | AFFAIR PREJUDICE
+5 | AFRICAN EGG
+6 | AGENT TRUMAN
+10 | ALADDIN CALENDAR
+11 | ALAMO VIDEOTAPE
+12 | ALASKA PHANTOM
+17 | ALONE TRIP
+18 | ALTER VICTORY
+19 | AMADEUS HOLY
+20 | AMELIE HELLFIGHTERS
+29 | ANTITRUST TOMATOES
+31 | APACHE DIVINE
+32 | APOCALYPSE FLAMINGOS
+34 | ARABIA DOGMA
+40 | ARMY FLINTSTONES
+42 | ARTIST COLDBLOODED
+44 | ATTACKS HATE
+45 | ATTRACTION NEWTON
+47 | BABY HALL
 
 ### Question
 
@@ -675,7 +677,6 @@ Un fou décide de regarder l'ensemble des films qui sont présents dans la base 
 
 ### Requête
 
-
 ```
 SELECT
 	SUM(f.length)/60/16 AS jours
@@ -685,7 +686,7 @@ FROM film f
 ### Résultats (total: 1)
 
 ```
-"120.07500000"
+120.07500000
 ```
 
 ## Exercice 18
@@ -725,29 +726,30 @@ ORDER BY T.pays, T.nom
 
 ### Résultats (total: 93)
 
-```
-"170","BEATRICE","ARNOLD","India","676","3113.24","4.605385"
-"60","MILDRED","BAILEY","India","625","2468.75","3.950000"
-"217","AGNES","BISHOP","India","529","2271.71","4.294348"
-"95","PAULA","BRYANT","India","324","1400.76","4.323333"
-"412","ALLEN","BUTTERFIELD","India","441","1801.59","4.085238"
-"419","CHAD","CARBONE","India","625","2243.75","3.590000"
-"468","TIM","CARY","India","1521","6848.79","4.502821"
-"209","TONYA","CHAPMAN","India","1024","5173.76","5.052500"
-"440","BERNARD","COLBY","India","484","1953.16","4.035455"
-"502","BRETT","CORNWELL","India","1156","4714.44","4.078235"
-"379","CARLOS","COUGHLIN","India","529","2455.71","4.642174"
-"446","THEODORE","CULP","India","961","3617.39","3.764194"
-"316","STEVEN","CURLEY","India","841","3848.59","4.576207"
-"300","JOHN","FARNSWORTH","India","961","4268.39","4.441613"
-"509","RAUL","FORTIER","India","400","2016.00","5.040000"
-"186","HOLLY","FOX","India","961","3555.39","3.699677"
-"123","SHANNON","FREEMAN","India","576","2418.24","4.198333"
-"356","GERALD","FULTZ","India","900","3651.00","4.056667"
-"238","NELLIE","GARRETT","India","441","1990.59","4.513810"
-"224","PEARL","GARZA","India","484","1689.16","3.490000"
-"121","JOSEPHINE","GOMEZ","India","676","2853.24","4.220769"
-```
+
+id | prenom | nom | pays | nombre_films_total | total_depense | depense_moyenne
+----|----------|--------|-------|-----|---------|-----------
+170 | BEATRICE | ARNOLD | India | 676 | 3113.24 | 4.605385
+60 | MILDRED | BAILEY | India | 625 | 2468.75 | 3.950000
+217 | AGNES | BISHOP | India | 529 | 2271.71 | 4.294348
+95 | PAULA | BRYANT | India | 324 | 1400.76 | 4.323333
+412 | ALLEN | BUTTERFIELD | India | 441 | 1801.59 | 4.085238
+419 | CHAD | CARBONE | India | 625 | 2243.75 | 3.590000
+468 | TIM | CARY | India | 1521 | 6848.79 | 4.502821
+209 | TONYA | CHAPMAN | India | 1024 | 5173.76 | 5.052500
+440 | BERNARD | COLBY | India | 484 | 1953.16 | 4.035455
+502 | BRETT | CORNWELL | India | 1156 | 4714.44 | 4.078235
+379 | CARLOS | COUGHLIN | India | 529 | 2455.71 | 4.642174
+446 | THEODORE | CULP | India | 961 | 3617.39 | 3.764194
+316 | STEVEN | CURLEY | India | 841 | 3848.59 | 4.576207
+300 | JOHN | FARNSWORTH | India | 961 | 4268.39 | 4.441613
+509 | RAUL | FORTIER | India | 400 | 2016.00 | 5.040000
+186 | HOLLY | FOX | India | 961 | 3555.39 | 3.699677
+123 | SHANNON | FREEMAN | India | 576 | 2418.24 | 4.198333
+356 | GERALD | FULTZ | India | 900 | 3651.00 | 4.056667
+238 | NELLIE | GARRETT | India | 441 | 1990.59 | 4.513810
+224 | PEARL | GARZA | India | 484 | 1689.16 | 3.490000
+121 | JOSEPHINE | GOMEZ | India | 676 | 2853.24 | 4.220769
 
 ## Exercice 19
 
@@ -780,16 +782,16 @@ ORDER BY pays, nom
 
 ### Résultats (total: 8)
 
-```
-"162","LAUREN","HUDSON","France"
-"11","LISA","ANDERSON","Japan"
-"355","TERRY","GRISSOM","Japan"
-"29","ANGELA","HERNANDEZ","Japan"
-"337","JERRY","JORDON","Japan"
-"264","GWENDOLYN","MAY","Japan"
-"53","HEATHER","MORRIS","Japan"
-"163","CATHY","SPENCER","Japan"
-```
+id | prenom | nom | pays
+----|--------|---------|---------
+162 | LAUREN | HUDSON | France
+11 | LISA | ANDERSON | Japan
+355 | TERRY | GRISSOM | Japan
+29 | ANGELA | HERNANDEZ | Japan
+337 | JERRY | JORDON | Japan
+264 | GWENDOLYN | MAY | Japan
+53 | HEATHER | MORRIS | Japan
+163 | CATHY | SPENCER | Japan
 
 ## Exercice 20
 
@@ -821,16 +823,16 @@ ORDER BY pays, nom
 
 ### Résultats (total: 8)
 
-```
-"162","LAUREN","HUDSON","France"
-"11","LISA","ANDERSON","Japan"
-"355","TERRY","GRISSOM","Japan"
-"29","ANGELA","HERNANDEZ","Japan"
-"337","JERRY","JORDON","Japan"
-"264","GWENDOLYN","MAY","Japan"
-"53","HEATHER","MORRIS","Japan"
-"163","CATHY","SPENCER","Japan"
-```
+id | prenom | nom | pays
+----|---------|------|---------
+162 | LAUREN | HUDSON | France
+11 | LISA | ANDERSON | Japan
+355 | TERRY | GRISSOM | Japan
+29 | ANGELA | HERNANDEZ | Japan
+337 | JERRY | JORDON | Japan
+264 | GWENDOLYN | MAY | Japan
+53 | HEATHER | MORRIS | Japan
+163 | CATHY | SPENCER | Japan
 
 ## Exercice 21
 
@@ -859,16 +861,16 @@ ORDER BY pays, nom
 
 ### Résultats (total: 8)
 
-```
-"162","LAUREN","HUDSON","France"
-"11","LISA","ANDERSON","Japan"
-"355","TERRY","GRISSOM","Japan"
-"29","ANGELA","HERNANDEZ","Japan"
-"337","JERRY","JORDON","Japan"
-"264","GWENDOLYN","MAY","Japan"
-"53","HEATHER","MORRIS","Japan"
-"163","CATHY","SPENCER","Japan"
-```
+id | prenom | nom | pays
+-----|------|----------|------
+162 | LAUREN | HUDSON | France
+11 | LISA | ANDERSON | Japan
+355 | TERRY | GRISSOM | Japan
+29 | ANGELA | HERNANDEZ | Japan
+337 | JERRY | JORDON | Japan
+264 | GWENDOLYN | MAY | Japan
+53 | HEATHER | MORRIS | Japan
+163 | CATHY | SPENCER | Japan
 
 ## Exercice 22
 
@@ -947,9 +949,11 @@ WHERE first_name = "MARCEL" AND last_name = "ROCHAT";
 
 ### Résultats (total: 1)
 
-```
-"Marcel","Rochat","Rue du centre","1260","Nyon","022 360 00 00","Switzerland","mr@bluewin.ch","1"
-```
+
+C.first_name | C.last_name | A.address | A.postal_code | CI.city | A.phone | CO.country | C.email | C.store_id
+-------|--------|--------------|---------|-----|--------------|-------------|---------------|--------
+Marcel | Rochat | Rue du centre | 1260 | Nyon | 022 360 00 00 | Switzerland | mr@bluewin.ch | 1
+
 
 ### Question
 
