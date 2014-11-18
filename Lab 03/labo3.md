@@ -339,7 +339,11 @@ WHERE (`first_name` LIKE 'b%'
 "ANGELINA","ASTAIRE"
 "BURT","DUKAKIS"
 ```
--- 9b)
+
+## Exercice 9b
+
+### Requête
+
 ```
 SELECT DISTINCT
 	actor.first_name,
@@ -560,11 +564,11 @@ HAVING nombre_films >= 35
 
 ## Exercice 15
 
-Lister les films (id, titre) dont l’identifiant est inférieur à 100, ordonnés par id dans lesquels joue au moins un acteur qui a joué dans plus de 35 films.
+Lister les films (id, titre) dont l’identifiant est inférieur à 100, ordonnés par id dans lesquels joue au moins un acteur qui a joué dans plus de 35 films.  
+Utiliser le mot clé IN.
 
 ### Requête
 
--- Utiliser le mot clé IN.
 ```
 SELECT
 	f.film_id AS id,
@@ -615,7 +619,6 @@ Même question, mais sans utiliser le mot clé IN. Indication : une sous-requêt
 
 ### Requête
 
--- Quelle requête est la plus rapide (celle-ci ou la précédente)? A votre avis, pourquoi?
 ```
 SELECT
 	f.film_id AS id,
@@ -633,7 +636,14 @@ JOIN (
 WHERE f.film_id <= 100
 ORDER BY f.film_id
 ```
--- La requête la plus rapide sera celle-ci (la n°16). En effet, le DBMS n'aura pas besoin de charger 2 fois la table `actor` et de chercher si chaque actor est présent dans la table `actor` réduite. Toutes ces comparaisons permettent de gagner du temps.
+
+### Question
+
+Quelle requête est la plus rapide (celle-ci ou la précédente)? A votre avis, pourquoi?
+
+### Réponse
+
+La requête la plus rapide sera celle-ci (la n°16). En effet, le DBMS n'aura pas besoin de charger 2 fois la table `actor` et de chercher si chaque actor est présent dans la table `actor` réduite. Toutes ces comparaisons permettent de gagner du temps.
 
 ## Exercice 17
 
@@ -656,15 +666,12 @@ FROM film f
 
 ## Exercice 18
 
-Afficher tous les clients résidant en Inde, au Japon, ou au Maroc, dont la dépense moyenne par film loué
+Afficher tous les clients résidant en Inde, au Japon, ou au Maroc, dont la dépense moyenne par film loué est supérieure à 3.4. Ordonner par pays puis par nom.  
+Afficher les informations suivantes : id, nom, prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la table film.  
+Indication : Commencer par établir une requête affichant tous les clients avec leur dépense moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
 
 ### Requête
 
--- est supérieure à 3.4. Ordonner par pays puis par nom. Afficher les informations suivantes : id, nom,
--- prenom, pays, nombre_films_total, total_depense, depense_moyenne. Le coût de location est dans la table film.
--- Indication : Commencer par établir une requête affichant tous les clients avec leur dépense
--- moyenne pour les films loués. Ensuite, créer une nouvelle requête qui ne retourne que les clients dont la
--- dépense moyenne par film est supérieure à 3.4, en utilisant la requête initiale comme sous-requête.
 ```
 SELECT *
 FROM (
@@ -720,11 +727,11 @@ ORDER BY T.pays, T.nom
 
 ## Exercice 19
 
-Donner la liste des clients japonais et français (id, nom, prenom, pays) qui n'ont pas encore rendu tous les films qu'ils ont empruntés.
+Donner la liste des clients japonais et français (id, nom, prenom, pays) qui n'ont pas encore rendu tous les films qu'ils ont empruntés.  
+Ordonner par pays, puis par nom. Utilisez EXISTS, ne pas utiliser de GROUP BY, ni de IN / NOT IN.
 
 ### Requête
 
--- Ordonner par pays, puis par nom. Utilisez EXISTS, ne pas utiliser de GROUP BY, ni de IN / NOT IN.
 ```
 SELECT
 	`customer_id` AS `id`,
@@ -800,7 +807,13 @@ ORDER BY pays, nom
 "53","HEATHER","MORRIS","Japan"
 "163","CATHY","SPENCER","Japan"
 ```
- --21) Même question. Ne pas utiliser de GROUP BY, de IN / NOT IN, ni de EXISTS / NOT EXISTS.
+
+## Exercice 21
+
+Même question. Ne pas utiliser de GROUP BY, de IN / NOT IN, ni de EXISTS / NOT EXISTS.
+
+### Requête
+
 ```
 SELECT DISTINCT
 	c.customer_id AS id,
@@ -835,12 +848,10 @@ ORDER BY pays, nom
 
 ## Exercice 22
 
-Lister le nombre de paiements dont la valeur supérieure est à 11. Effacer ces paiements. Lister à nouveau
+Lister le nombre de paiements dont la valeur supérieure est à 11. Effacer ces paiements. Lister à nouveau pour vérifier que l'opération a bien eu lieu. Donner les trois requêtes et les résultats de la première et de la troisième.
 
-### Requête
+### Requêtes
 
---pour vérifier que l'opération a bien eu lieu. Donner les trois requêtes et les résultats de la première et de
--- la troisième.
 ```
 SELECT COUNT(p.payment_id)
 FROM payment p
@@ -854,11 +865,10 @@ WHERE p.amount > 11;
 
 ## Exercice 23
 
-En une seule requête, modifier les paiements comme suit : Chaque paiement de plus de 5 est majoré de
+En une seule requête, modifier les paiements comme suit: Chaque paiement de plus de 5 est majoré de 50% et la date de paiement est mise à jour à la date courante du serveur.
 
 ### Requête
 
---50% et la date de paiement est mise à jour à la date courante du serveur.
 ```
 UPDATE payment
 SET amount = (amount + amount * 0.5), payment_date = CURRENT_TIMESTAMP
@@ -867,13 +877,11 @@ WHERE amount > 5
 
 ## Exercice 24
 
-Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez
+Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez louer des films. Spécifier les attributs (colonnes) lors de l’insertion.  
+Indications: plusieurs requêtes sont nécessaires. Pour chaque nouveau tuple, la base de données doit générer l'id. 
 
 ### Requête
 
--- louer des films. Spécifier les attributs (colonnes) lors de l’insertion. Indications : plusieurs requêtes sont
--- nécessaires. Pour chaque nouveau tuple, la base de données doit générer l'id. Pourquoi ne pouvez-vous
--- pas le faire? Nyon n'existe pas, il faut donc la crée.
 ```
 INSERT INTO
 	city (city, country_id)
@@ -918,8 +926,15 @@ WHERE first_name = "MARCEL" AND last_name = "ROCHAT";
 ```
 "Marcel","Rochat","Rue du centre","1260","Nyon","022 360 00 00","Switzerland","mr@bluewin.ch","1"
 ```
--- Nous pourrions générer l'id des tuples ajoutés, mais il faudrait au préalable faire une requête pour trouver l'id le plus grand de la table.
--- Cette opération est fastidieuse et peut provoquer des conflits si deux clients essayent d'insérer des tuples en même temps.
+
+### Question
+
+Pourquoi ne pouvez-vous pas le faire? Nyon n'existe pas, il faut donc la crée.
+
+### Réponse
+
+Nous pourrions générer l'id des tuples ajoutés, mais il faudrait au préalable faire une requête pour trouver l'id le plus grand de la table.  
+Cette opération est fastidieuse et peut provoquer des conflits si deux clients essayent d'insérer des tuples en même temps.
 
 ## Exercice 25
 
