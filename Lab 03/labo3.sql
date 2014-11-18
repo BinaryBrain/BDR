@@ -690,10 +690,10 @@ UPDATE payment
 SET amount = (amount + amount * 0.5), payment_date = CURRENT_TIMESTAMP
 WHERE amount > 5
 
--- 24) 24. Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez
---louer des films. Spécifier les attributs (colonnes) lors de l’insertion. Indications : plusieurs requêtes sont
---nécessaires. Pour chaque nouveau tuple, la base de données doit générer l'id. Pourquoi ne pouvez-vous
--- pas le faire? Nyon n'existe pas, il faut donc la crée
+-- 24) Insérez le nouveau client actif dans la base, avec toutes les informations requises pour que vous puissiez
+-- louer des films. Spécifier les attributs (colonnes) lors de l’insertion. Indications : plusieurs requêtes sont
+-- nécessaires. Pour chaque nouveau tuple, la base de données doit générer l'id. Pourquoi ne pouvez-vous
+-- pas le faire? Nyon n'existe pas, il faut donc la crée.
 
 INSERT INTO 
 	city (city, country_id) 
@@ -707,14 +707,14 @@ INSERT INTO
 VALUES ("Rue du centre",(
 		SELECT city_id FROM city 
 		WHERE city LIKE "Nyon"),
-			1260,"022 360 00 00","")
+			1260,"022 360 00 00","");
 
 INSERT INTO 
 	customer (store_id,first_name,last_name,email,address_id,active,create_date) 
 VALUES (1,"Marcel","Rochat","mr@bluewin.ch",(
 		SELECT 
 			max(address_id) 
-		FROM address),1,CURRENT_DATE())
+		FROM address),1,CURRENT_DATE());
 
 SELECT C.first_name,
 	   C.last_name,
@@ -733,3 +733,11 @@ FROM customer AS C
 	INNER JOIN country AS CO
 		ON CI.country_id = CO.country_id
 WHERE first_name = "MARCEL" AND last_name = "ROCHAT";
+
+-- total de 1
+
+"Marcel","Rochat","Rue du centre","1260","Nyon","022 360 00 00","Switzerland","mr@bluewin.ch","1"
+
+-- Nous pourrions générer l'id des tuples ajoutés, mais il faudrait au préalable faire une requête pour trouver l'id le plus grand de la table.
+-- Cette opération est fastidieuse et peut provoquer des conflits si deux clients essayent d'insérer des tuples en même temps.
+ 
