@@ -466,8 +466,8 @@ WHERE I.store_id = 1
 ```
 
 ```
-SELECT 
-	SUM(amount) 
+SELECT
+	SUM(amount)
 FROM payment AS P
 INNER JOIN rental AS R
 	ON R.rental_id = P.rental_id
@@ -542,10 +542,31 @@ Créer une procédure pour mettre à jour la date de la mis à jour de tous les 
 ```
 CREATE PROCEDURE `MAJFILM`()
 UPDATE `sakila`.`film` SET `last_update` = NOW()
+```
 
+```
 CALL `MAJFILM`();
 ```
 
 ### Exercice 15
 
 Créer une procédure qui calcule le nombre d'exemplaires physiques des films ainsi que le nombre de locations dans chaque magasin. Utiliser la procédure pour afficher le résultat de magasin 1 et 2.
+
+### Requête
+
+```
+CREATE PROCEDURE `STOCK`()
+SELECT
+	s.store_id,
+	COUNT(f.film_id) AS n_film,
+	COUNT(r.rental_id) AS n_rental
+FROM store s
+JOIN inventory i ON i.store_id = s.store_id
+JOIN film f ON f.film_id = i.film_id
+JOIN rental r ON r.inventory_id = i.inventory_id
+GROUP BY s.store_id
+```
+
+```
+CALL `STOCK`();
+```
