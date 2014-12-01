@@ -19,6 +19,17 @@ CREATE TRIGGER `major`
 	BEGIN
 		SET new.amount = (new.amount + new.amount * 0.08), new.last_update = CURRENT_TIMESTAMP 
 	END
+	
+-- On insert un amount de 10
+INSERT INTO `sakila`.`payment` 
+	(`payment_id`, `customer_id`, `staff_id`, `rental_id`, `amount`, `payment_date`, `last_update`)
+VALUES 
+	(NULL, '1', '1', '1', '10', '2014-12-02 00:00:00', CURRENT_TIMESTAMP);
+
+-- Le resultat de notre dernière insertion est 
+"16051","1","1","1","10.80","2014-12-02 00:00:00","2014-12-01 17:23:41"
+
+
 ## Exercice 2
 
 --Créer une nouvelle table "staff_creation_log" avec les attributs "username" et "when_created".
@@ -40,9 +51,13 @@ END
 $$
 
 
+-- lors de l'insertion d'un nouveau membre du staff nomme Xaaram, nous obtenons
+"xaaram","10:10:32"
+
 ## Exercice 3
 
--- Utiliser un Trigger qui permet de mettre à jour l'adresse email d'un membre du personnel de manière automatique à partir de son prénom et de son nom selon le format "prénom.nom@sakilastaff.com".
+-- Utiliser un Trigger qui permet de mettre à jour l'adresse email d'un membre du personnel de manière 
+-- automatique à partir de son prénom et de son nom selon le format "prénom.nom@sakilastaff.com".
 
 CREATE
 	TRIGGER email_gen
@@ -52,6 +67,12 @@ CREATE
 
 
 ## Exercice 4
+-- Créer une nouvelle table "customer_store_log" avec les attributs "customer_id", "last_store_id",
+-- "register_date" et "unregister_date" dont le but est d'archiver les anciens magasins fréquentés par un
+-- client. Le "register_date" représente la date d'inscription d'un client dans un magasin et le
+-- "unregister_date" représente la date de sa désinscription. Créer un Trigger pour enregistrer une
+-- nouvelle ligne dans la table "customer_store_log", à chaque fois qu'un client change de magasin.
+
 CREATE TABLE customer_store_log (
     customer_id smallint(5),
     last_store_id tinyint(3),
@@ -75,6 +96,10 @@ FOR EACH ROW BEGIN
    	WHERE customer_id = customer_id 
    		AND last_store_id = old.store_id ;
 	END
+	
+-- Quand nous changeons le store d'un customer nous obtenon, store 1 étant le nouveau store
+"1","2","2014-11-25 10:01:00","2014-12-01 17:31:46"
+"1","1","2014-12-01 17:31:46",NULL
 
 ## Exercice 5
 CREATE EVENT `clean_up` 
@@ -82,6 +107,9 @@ CREATE EVENT `clean_up`
 	DELETE FROM customer_store_log 
 		WHERE (unregister_date < CURRENT_TIMESTAMP - INTERVAL 1 MINUTE) 
 		AND(unregister_date IS NOT NULL)
+		
+-- Apres attente d'une minutre l'ancient enregisterement a été effacé
+"1","1","2014-12-01 17:31:46",NULL
 
 ## Exercice 6
 -- On aimerait envoyer des cartes du Nouvel An à l'adresse postale du personnel. On voudrait déléguer
@@ -107,11 +135,6 @@ FROM
 JOIN address a ON a.address_id = c.address_id
 JOIN city ON city.city_id = a.city_id
 JOIN country co ON co.country_id = city.country_id
-
-
-
-
-
 
 ## Exercice 11
 
