@@ -14,7 +14,7 @@ public class JDBCTest {
 		try {
 			// Step 1: Allocate a database "Connection" object
 			// TO
-			conn = DriverManager.getConnection("TO COMPLETE");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/sakila", "root", "");
  
 			// Step 2: Allocate a "Statement" object in the Connection
 			// TO COMPLETE
