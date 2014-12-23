@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bdr_labo5;
+package BDR_Labo5;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,112 +15,23 @@ import java.util.LinkedList;
 import java.util.*;
 
 /**
- *
- * @author Simon
+ * @author Simon Baehler, Sacha Bron
  */
-public class BDR_Labo5 {
-
+public class BDR_Labo5_5 {
 	/**
-	 * @param args
-	 *            the command line arguments
+	 * retourne l'object choisie parmi les résultat de la requete
 	 */
-	// retourn l'object choisie parmi les résultat de la requete
 	public static void main(String[] args) {
-
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		String url = "jdbc:mysql://localhost:3306/sakila";
 		String utilisateur = "root";
 		String motDePasse = "";
-
-		/* Chargement du driver JDBC pour MySQL */
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-
-		}
-
+		
 		try {
 			conn = DriverManager.getConnection(url, utilisateur, motDePasse);
 			stmt = conn.createStatement();
-
-			// Exercie 1
-			System.out.println("--- Exercice 1 ---");
-			rs = stmt.executeQuery("SELECT * FROM film LIMIT 10");
-			System.out.println("Les résultats sont :");
-
-			while (rs.next()) {
-				for (int i = 1; i < rs.getMetaData().getColumnCount(); i++) {
-					String col = rs.getMetaData().getColumnName(i);
-					String title = rs.getString(col);
-
-					String separator = (i > 1) ? " | " : "";
-
-					System.out.print(separator + title);
-				}
-
-				System.out.println();
-			}
-
-			// Exercice 2
-			System.out.println("\n--- Exercice 2 ---");
-			try {
-				String first_name;
-				String lastname_name;
-				PreparedStatement preparedStatement;
-				BufferedReader bufferRead = new BufferedReader(
-						new InputStreamReader(System.in));
-
-				for (int i = 0; i < 10; i++) {
-					System.out.println("Entrez un prénom:");
-					first_name = bufferRead.readLine();
-
-					System.out.println("Entrez un nom de famille:");
-					lastname_name = bufferRead.readLine();
-
-					preparedStatement = conn
-							.prepareStatement("INSERT INTO sakila.actor (first_name, last_name) VALUES (?,?)");
-					preparedStatement.setString(1, first_name);
-					preparedStatement.setString(2, lastname_name);
-					preparedStatement.executeUpdate();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			// Exercie 4
-			System.out.println("\n--- Exercice 4 ---");
-			try {
-				String catName = "";
-				BufferedReader bufferRead = new BufferedReader(
-						new InputStreamReader(System.in));
-				System.out.println("Entez un nom de catégorie:");
-				catName = bufferRead.readLine();
-				String sql = "{CALL NBRFILM_C(?,?)}";
-				CallableStatement callNombreFilm = conn.prepareCall(sql);
-				callNombreFilm.setString(1, catName);
-				callNombreFilm.execute();
-				System.out.println(callNombreFilm.getInt(2));
-
-				Statement stmtrs = conn.createStatement();
-
-				ResultSet rsFilm = stmtrs
-						.executeQuery("SELECT * FROM category");
-				System.out.println("les résultats sont:");
-				while (rsFilm.next()) {
-					String name = rsFilm.getString("name");
-					callNombreFilm = conn.prepareCall(sql);
-					callNombreFilm.setString(1, name);
-					callNombreFilm.execute();
-					System.out.println(name);
-					System.out.println(callNombreFilm.getInt(2));
-					System.out.println();
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 
 			// Exercice 5
 			System.out.println("\n --- Exercice 5 ---");
