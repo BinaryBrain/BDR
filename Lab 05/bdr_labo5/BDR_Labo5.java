@@ -45,49 +45,55 @@ public class BDR_Labo5 {
             stmt = conn.createStatement();
 
             //Exercie 1
+            System.out.println("--- Exercice 1 ---");
             rs = stmt.executeQuery("SELECT * FROM film LIMIT 10");
-            System.out.println("les résultats sont :");
+            System.out.println("Les résultats sont :");
+            
             while (rs.next()) {
                 for (int i = 1; i < rs.getMetaData().getColumnCount(); i++) {
                     String col = rs.getMetaData().getColumnName(i);
                     String title = rs.getString(col);
-                    System.out.print(title + " ");
+                    
+                    String separator = (i > 1) ? " | " : "";
+                    	
+                    System.out.print(separator + title);
                 }
+                
                 System.out.println();
-
             }
 
-            //Exercice 2 
+            //Exercice 2
+            System.out.println("\n--- Exercice 2 ---");
             try {
-                String fist_name;
+                String first_name;
                 String lastname_name;
                 PreparedStatement preparedStatement;
                 BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+                
                 for (int i = 0; i < 10; i++) {
-                    System.out.println("Enter fist_name here:");
-                    fist_name = bufferRead.readLine();
-                    System.out.println("You entered " + fist_name);
-
-                    System.out.println("Enter lastname_name here:");
+                    System.out.println("Entrez un prénom:");
+                    first_name = bufferRead.readLine();
+                    
+                    System.out.println("Entrez un nom de famille:");
                     lastname_name = bufferRead.readLine();
-                    System.out.println("You entered " + lastname_name);
 
-                    preparedStatement = conn.prepareStatement("insert into sakila.actor (first_name, last_name) values " + "(?,?)");
-                    preparedStatement.setString(1, fist_name);
+                    preparedStatement = conn.prepareStatement("INSERT INTO sakila.actor (first_name, last_name) VALUES (?,?)");
+                    preparedStatement.setString(1, first_name);
                     preparedStatement.setString(2, lastname_name);
                     preparedStatement.executeUpdate();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            
             //Exercie 4
+            System.out.println("\n--- Exercice 4 ---");
             try {
                 String catName = "";
                 BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-                System.out.println("Entez un nom de catégorie");
+                System.out.println("Entez un nom de catégorie:");
                 catName = bufferRead.readLine();
-                String sql = "{call NBRFILM_C(?,?)}";
+                String sql = "{CALL NBRFILM_C(?,?)}";
                 CallableStatement callNombreFilm = conn.prepareCall(sql);
                 callNombreFilm.setString(1, catName);
                 callNombreFilm.execute();
@@ -96,7 +102,7 @@ public class BDR_Labo5 {
                 Statement stmtrs = conn.createStatement();
 
                 ResultSet rsFilm = stmtrs.executeQuery("SELECT * FROM category");
-                System.out.println("les résultats sont :");
+                System.out.println("les résultats sont:");
                 while (rsFilm.next()) {
                     String name = rsFilm.getString("name");
                     callNombreFilm = conn.prepareCall(sql);
@@ -110,8 +116,9 @@ public class BDR_Labo5 {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            
             //Exercice 5
+            System.out.println("\n --- Exercice 5 ---");
             String sqlDropView = " DROP VIEW IF EXISTS revenu_par_localite";
             Statement stDropView = conn.createStatement();
             stDropView.executeUpdate(sqlDropView);
@@ -138,7 +145,7 @@ public class BDR_Labo5 {
                 String country = "";
                 String sqlRevenuContry;
                 BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-                System.out.println("Entez un nom du country");
+                System.out.println("Entez un nom de pays:");
                 country = bufferRead.readLine();
                 sqlRevenuContry = "SELECT * FROM `revenu_par_localite` where `country` = '" + country + "'";
                 ResultSet revenueRS = stmt.executeQuery(sqlRevenuContry);
