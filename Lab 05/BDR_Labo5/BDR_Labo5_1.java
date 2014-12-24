@@ -10,9 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
-import java.io.*;
-import java.util.LinkedList;
-import java.util.*;
 
 /**
  * @author Simon Baehler, Sacha Bron

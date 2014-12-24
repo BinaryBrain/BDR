@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 import java.io.*;
-import java.util.LinkedList;
-import java.util.*;
 
 /**
  * @author Simon Baehler, Sacha Bron
@@ -24,7 +22,6 @@ public class BDR_Labo5_2 {
 	public static void main(String[] args) {
 		Connection conn = null;
 		Statement stmt = null;
-		ResultSet rs = null;
 		String url = "jdbc:mysql://localhost:3306/sakila";
 		String utilisateur = "root";
 		String motDePasse = "";
@@ -34,7 +31,7 @@ public class BDR_Labo5_2 {
 			stmt = conn.createStatement();
 
 			// Exercice 2
-			System.out.println("\n--- Exercice 2 ---");
+			System.out.println("--- Exercice 2 ---");
 			try {
 				String first_name;
 				String lastname_name;
