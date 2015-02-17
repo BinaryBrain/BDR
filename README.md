@@ -1,2 +1,2 @@
 # HEIG-BDR
-HEIG's database projects
+Database projects for HEIG-VD
